@@ -11,11 +11,25 @@
   function toggleNewsContent() {
     console.log("[News Tab Theme] toggleNewsContent called");
     const topicList = document.querySelector('.topic-list');
-    const newsContent = document.querySelector('.custom-news-content');
-    console.log("Hiding topic list, showing news content");
-    topicList.style.display = 'none';
-    if (newsContent) {
-      newsContent.style.display = 'block';
+    const listArea = document.querySelector('.list-area');
+    if (topicList) {
+      console.log("Hiding topic list");
+      topicList.style.display = 'none';
+    }
+    // Remove any existing injected news div
+    const existingNewsDiv = document.getElementById('custom-news-content');
+    if (existingNewsDiv) {
+      existingNewsDiv.remove();
+    }
+    // Add a new div with custom text
+    if (listArea) {
+      const newsDiv = document.createElement('div');
+      newsDiv.id = 'custom-news-content';
+      newsDiv.style.padding = '2em';
+      newsDiv.style.background = '#f9f9f9';
+      newsDiv.innerHTML = '<h2>Dynamic News</h2><p>This is some dynamically injected news content.</p>';
+      listArea.appendChild(newsDiv);
+      console.log("Injected custom news content");
     }
   }
 
