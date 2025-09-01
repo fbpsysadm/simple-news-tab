@@ -1,32 +1,19 @@
 <script type="text/discourse-plugin" version="0.8.42">
   console.log("[News Tab Theme] Script loaded");
-  // Add a new News tab to the navigation bar, linking to /top?news=1
+  // Add a new News tab to the navigation bar, linking to /top#news
   api.addNavigationBarItem({
     name: "news",
     displayName: "News",
-    href: "/top?news=1"
-  });
-
-  // Ensure clicking the News tab uses Discourse's router for navigation
-  api.onPageChange(() => {
-    console.log("[News Tab Theme] onPageChange for News tab click handler");
-    const newsTab = document.querySelector('.navigation-bar .news');
-    if (newsTab) {
-      newsTab.onclick = function(e) {
-        e.preventDefault();
-        const router = require('discourse/models/router').default;
-        router.transitionTo('/top', { queryParams: { news: 1 } });
-      };
-    }
+    href: "/top#news"
   });
 
   // Function to show/hide news content and topic list
   function toggleNewsContent() {
     console.log("[News Tab Theme] toggleNewsContent called");
     const path = window.location.pathname;
-    const search = window.location.search;
-    console.log("Current path:", path, "Current search:", search);
-    const isNewsTab = (path === "/top" || path === "/top/") && /[?&]news=1($|&)/.test(search);
+    const hash = window.location.hash;
+    console.log("Current path:", path, "Current hash:", hash);
+    const isNewsTab = (path === "/top" || path === "/top/") && hash === "#news";
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
 
