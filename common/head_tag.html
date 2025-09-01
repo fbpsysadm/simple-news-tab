@@ -9,6 +9,7 @@
   // Hide topic list and show only news content when News tab is active
   api.onPageChange((url, title) => {
     const isNewsTab = url === "/top" && document.querySelector('.navigation-bar .news.active');
+    alert(isNewsTab);
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
     if (topicList && newsContent) {
