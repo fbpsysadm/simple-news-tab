@@ -23,7 +23,10 @@
   // Function to show/hide news content and topic list
   function toggleNewsContent() {
     console.log("[News Tab Theme] toggleNewsContent called");
-    const isNewsTab = window.location.pathname === "/top" && window.location.search.includes("news=1");
+    const path = window.location.pathname;
+    const search = window.location.search;
+    console.log("Current path:", path, "Current search:", search);
+    const isNewsTab = (path === "/top" || path === "/top/") && /[?&]news=1($|&)/.test(search);
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
 
