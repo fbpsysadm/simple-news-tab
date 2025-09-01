@@ -23,8 +23,8 @@
     const isNewsTab = url.startsWith("/top") && window.location.search.includes("news=1");
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
-    if (1==1) {
-    //if (topicList && newsContent) {
+    if (topicList && newsContent) {
+      console.log(isNewsTab);
       if (isNewsTab) {
         topicList.style.display = 'none';
         newsContent.style.display = 'block';
