@@ -18,13 +18,12 @@
     }
   });
 
-  // Hide topic list and show only news content when News tab is active
-  api.onPageChange((url, title) => {
-    const isNewsTab = url.startsWith("/top") && window.location.search.includes("news=1");
+  // Function to show/hide news content and topic list
+  function toggleNewsContent() {
+    const isNewsTab = window.location.pathname === "/top" && window.location.search.includes("news=1");
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
     if (topicList && newsContent) {
-      console.log(isNewsTab);
       if (isNewsTab) {
         topicList.style.display = 'none';
         newsContent.style.display = 'block';
@@ -33,5 +32,14 @@
         newsContent.style.display = 'none';
       }
     }
+  }
+
+  // Run on page change
+  api.onPageChange(toggleNewsContent);
+
+  // Use MutationObserver to watch for topic list or news content being added
+  const observer = new MutationObserver(() => {
+    toggleNewsContent();
   });
+  observer.observe(document.body, { childList: true, subtree: true });
 </script>
