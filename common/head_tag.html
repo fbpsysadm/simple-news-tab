@@ -1,17 +1,17 @@
 <script type="text/discourse-plugin" version="0.8.42">
-  // Add a new News tab to the navigation bar, linking to /top
+  // Add a new News tab to the navigation bar, linking to /top?news=1
   api.addNavigationBarItem({
     name: "news",
     displayName: "News",
-    href: "/top"
+    href: "/top?news=1"
   });
 
   // Hide topic list and show only news content when News tab is active
   api.onPageChange((url, title) => {
-    const isNewsTab = url === "/top" && document.querySelector('.navigation-bar .news.active');
-    alert(isNewsTab);
+    const isNewsTab = url.startsWith("/top") && window.location.search.includes("news=1");
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
+    console.log("isNewsTab:", isNewsTab);
     if (topicList && newsContent) {
       if (isNewsTab) {
         topicList.style.display = 'none';
