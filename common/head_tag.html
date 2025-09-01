@@ -27,7 +27,12 @@
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
 
-    if (isNewsTab) console.log("isNewsTab is true");
+    if (isNewsTab) {
+      console.log("isNewsTab is true");
+    } else {
+      console.log("isNewsTab is false");
+    }
+
     if (topicList) console.log("topicList found");
     if (newsContent) console.log("newsContent found");
 
