@@ -10,49 +10,33 @@
   // Function to show/hide news content and topic list
   function toggleNewsContent() {
     console.log("[News Tab Theme] toggleNewsContent called");
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-    console.log("Current path:", path, "Current hash:", hash);
-    const isNewsTab = (path === "/top" || path === "/top/") && hash === "#news";
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
-
-    if (isNewsTab) {
-      console.log("isNewsTab is true");
-    } else {
-      console.log("isNewsTab is false");
-    }
-
-    if (topicList) console.log("topicList found");
-    if (newsContent) console.log("newsContent found");
-
-    if (topicList && newsContent) {
-      if (isNewsTab) {
-        console.log("Hiding topic list, showing news content");
-        topicList.style.display = 'none';
-        newsContent.style.display = 'block';
-      } else {
-        console.log("Showing topic list, hiding news content");
-        topicList.style.display = '';
-        newsContent.style.display = 'none';
-      }
+    console.log("Hiding topic list, showing news content");
+    topicList.style.display = 'none';
+    newsContent.style.display = 'block';
     }
   }
 
-  // Run on page change
-  try {
-    api.onPageChange(toggleNewsContent);
-    console.log("[News Tab Theme] Registered toggleNewsContent with onPageChange");
-  } catch (e) {
-    console.error("[News Tab Theme] Error registering onPageChange:", e);
-  }
 
-  // Ensure clicking the News tab sets the hash to #news
+  // Ensure clicking the News tab hides the topic list if visible
   api.onPageChange(() => {
     const newsTab = document.querySelector('.navigation-bar .news');
     if (newsTab) {
+      console.log("found NewsTab");
       newsTab.onclick = function(e) {
         e.preventDefault();
+        // Hide the topic list table if visible
+        const topicList = document.querySelector('.topic-list');
+        if (topicList && topicList.offsetParent !== null) {
+          topicList.style.display = 'none';
+        }
+        // Optionally, show your news content if needed
+        const newsContent = document.querySelector('.custom-news-content');
+        if (newsContent) {
+          newsContent.style.display = 'block';
+        }
+        // Optionally, update the hash for consistency
         if (window.location.pathname === '/top' || window.location.pathname === '/top/') {
           window.location.hash = '#news';
         } else {
