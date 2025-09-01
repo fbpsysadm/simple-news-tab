@@ -50,7 +50,7 @@
     const newsTab = document.querySelector('.nav-item_news');
     if (newsTab) {
       newsTab.onclick = function(e) {
-        log.log("[News Tab Theme] News tab clicked, toggling news content");
+        console.log("[News Tab Theme] News tab clicked, toggling news content");
         e.preventDefault();
         toggleNewsContent();
         // Remove 'active' class from all nav items
@@ -64,7 +64,7 @@
 
     document.querySelectorAll('.navigation-bar .nav-item:not(.nav-item_news)').forEach(tab => {
       tab.onclick = function(e) {
-        log.log("[News Tab Theme] Non-news tab clicked, restoring topic list");
+        console.log("[News Tab Theme] Non-news tab clicked, restoring topic list");
         // Remove custom news content if present
         const existingNewsDiv = document.getElementById('custom-news-content');
         if (existingNewsDiv) {
