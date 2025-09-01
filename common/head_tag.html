@@ -5,5 +5,20 @@
     displayName: "News",
     href: "/top"
   });
-  // The news content will be injected on the /top page using a connector.
+
+  // Hide topic list and show only news content when News tab is active
+  api.onPageChange((url, title) => {
+    const isNewsTab = url === "/top" && document.querySelector('.navigation-bar .news.active');
+    const topicList = document.querySelector('.topic-list');
+    const newsContent = document.querySelector('.custom-news-content');
+    if (topicList && newsContent) {
+      if (isNewsTab) {
+        topicList.style.display = 'none';
+        newsContent.style.display = 'block';
+      } else {
+        topicList.style.display = '';
+        newsContent.style.display = 'none';
+      }
+    }
+  });
 </script>
