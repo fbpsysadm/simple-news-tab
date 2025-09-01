@@ -1,4 +1,5 @@
 <script type="text/discourse-plugin" version="0.8.42">
+  console.log("[News Tab Theme] Script loaded");
   // Add a new News tab to the navigation bar, linking to /top?news=1
   api.addNavigationBarItem({
     name: "news",
@@ -8,8 +9,8 @@
 
   // Ensure clicking the News tab uses Discourse's router for navigation
   api.onPageChange(() => {
+    console.log("[News Tab Theme] onPageChange for News tab click handler");
     const newsTab = document.querySelector('.navigation-bar .news');
-    console.log("newsTab found");
     if (newsTab) {
       newsTab.onclick = function(e) {
         e.preventDefault();
@@ -21,6 +22,7 @@
 
   // Function to show/hide news content and topic list
   function toggleNewsContent() {
+    console.log("[News Tab Theme] toggleNewsContent called");
     const isNewsTab = window.location.pathname === "/top" && window.location.search.includes("news=1");
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
@@ -43,11 +45,19 @@
   }
 
   // Run on page change
-  api.onPageChange(toggleNewsContent);
+  try {
+    api.onPageChange(toggleNewsContent);
+    console.log("[News Tab Theme] Registered toggleNewsContent with onPageChange");
+  } catch (e) {
+    console.error("[News Tab Theme] Error registering onPageChange:", e);
+  }
 
   // Use MutationObserver to watch for topic list or news content being added
   const observer = new MutationObserver(() => {
     toggleNewsContent();
   });
   observer.observe(document.body, { childList: true, subtree: true });
+
+  // Call once on load
+  toggleNewsContent();
 </script>
