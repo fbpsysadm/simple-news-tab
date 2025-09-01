@@ -18,10 +18,6 @@
       topTab.style.display = 'none';
     }
 
-    if (topicList) {
-      console.log("Hiding topic list");
-      topicList.style.display = 'none';
-    }
     // Remove any existing injected news div
     const existingNewsDiv = document.getElementById('custom-news-content');
     if (existingNewsDiv) {
@@ -47,11 +43,14 @@
     }
   }
 
+
+
   // Attach click event to News tab to hide topic list and show news content
   api.onPageChange(() => {
     const newsTab = document.querySelector('.nav-item_news');
     if (newsTab) {
       newsTab.onclick = function(e) {
+        log.log("[News Tab Theme] News tab clicked, toggling news content");
         e.preventDefault();
         toggleNewsContent();
         // Remove 'active' class from all nav items
@@ -62,5 +61,30 @@
         newsTab.classList.add('active');
       };
     }
+
+    document.querySelectorAll('.navigation-bar .nav-item:not(.nav-item_news)').forEach(tab => {
+      tab.onclick = function(e) {
+        log.log("[News Tab Theme] Non-news tab clicked, restoring topic list");
+        // Remove custom news content if present
+        const existingNewsDiv = document.getElementById('custom-news-content');
+        if (existingNewsDiv) {
+          existingNewsDiv.remove();
+        }
+        // Restore hidden elements
+        const topTab = document.querySelector('.nav-item_top');
+        if (topTab) {
+          topTab.style.display = '';
+        }
+        const topListsDiv = document.querySelector('.top-lists');
+        if (topListsDiv) {
+          topListsDiv.style.display = '';
+        }
+        const topicListBottom = document.querySelector('.topic-list-bottom');
+        if (topicListBottom) {
+          topicListBottom.style.display = '';
+        }
+      };
+    });
+
   });
 </script>
