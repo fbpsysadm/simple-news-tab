@@ -24,8 +24,8 @@
     const isNewsTab = window.location.pathname === "/top" && window.location.search.includes("news=1");
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
-    
-    console.log("Toggling news content. isNewsTab:", isNewsTab);
+
+    if (isNewsTab) console.log("isNewsTab is true");
     if (topicList) console.log("topicList found");
     if (newsContent) console.log("newsContent found");
 
