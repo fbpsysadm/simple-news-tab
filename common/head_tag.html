@@ -31,9 +31,11 @@
 
     if (topicList && newsContent) {
       if (isNewsTab) {
+        console.log("Hiding topic list, showing news content");
         topicList.style.display = 'none';
         newsContent.style.display = 'block';
       } else {
+        console.log("Showing topic list, hiding news content");
         topicList.style.display = '';
         newsContent.style.display = 'none';
       }
