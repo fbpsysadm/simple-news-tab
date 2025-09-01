@@ -17,4 +17,18 @@
   });
 
   // Register the route and template (see below)
+
+  api.modifyClass("router:main", {
+    pluginId: "add-news-route",
+    beforeModel(transition) {
+      if (transition.intent.url == "/news") {
+        this.transitionTo("news");
+      }
+      this._super(...arguments);
+    }
+  });
+
+  api.addRoute("news", { path: "/news" });
+
+  
 </script>
