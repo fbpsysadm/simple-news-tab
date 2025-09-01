@@ -40,6 +40,12 @@
       newsTab.onclick = function(e) {
         e.preventDefault();
         toggleNewsContent();
+        // Remove 'active' class from all nav items
+        document.querySelectorAll('.navigation-bar .nav-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        // Add 'active' class to News tab
+        newsTab.classList.add('active');
       };
     }
   });
