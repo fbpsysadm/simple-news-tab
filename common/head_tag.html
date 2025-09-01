@@ -23,6 +23,14 @@
     }
     // Add a new div with custom text
     if (listArea) {
+      const topListsDiv = document.querySelector('.top-lists');
+      if (topListsDiv) {
+        topListsDiv.remove();
+      }
+      const topicListBottom = document.querySelector('.topic-list-bottom');
+      if (topicListBottom) {
+        topicListBottom.remove();
+      }
       const newsDiv = document.createElement('div');
       newsDiv.id = 'custom-news-content';
       newsDiv.style.padding = '2em';
