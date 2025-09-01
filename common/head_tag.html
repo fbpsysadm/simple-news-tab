@@ -17,5 +17,14 @@
     newsContent.style.display = 'block';
   }
 
-
+  // Attach click event to News tab to hide topic list and show news content
+  api.onPageChange(() => {
+    const newsTab = document.querySelector('.navigation-bar .news');
+    if (newsTab) {
+      newsTab.onclick = function(e) {
+        e.preventDefault();
+        toggleNewsContent();
+      };
+    }
+  });
 </script>
