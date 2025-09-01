@@ -31,11 +31,11 @@
     if (listArea) {
       const topListsDiv = document.querySelector('.top-lists');
       if (topListsDiv) {
-        topListsDiv.remove();
+        topListsDiv.style.display = 'none';
       }
       const topicListBottom = document.querySelector('.topic-list-bottom');
       if (topicListBottom) {
-        topicListBottom.remove();
+        topicListBottom.style.display = 'none';
       }
       const newsDiv = document.createElement('div');
       newsDiv.id = 'custom-news-content';
