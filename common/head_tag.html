@@ -9,7 +9,7 @@
   // Ensure clicking the News tab uses Discourse's router for navigation
   api.onPageChange(() => {
     const newsTab = document.querySelector('.navigation-bar .news');
-    console.log("newsTab found";
+    console.log("newsTab found");
     if (newsTab) {
       newsTab.onclick = function(e) {
         e.preventDefault();
@@ -25,7 +25,7 @@
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
 
-    //if (isNewsTab) console.log("isNewsTab is true");
+    if (isNewsTab) console.log("isNewsTab is true");
     if (topicList) console.log("topicList found");
     if (newsContent) console.log("newsContent found");
 
