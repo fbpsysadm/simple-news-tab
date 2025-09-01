@@ -19,7 +19,7 @@
 
   // Attach click event to News tab to hide topic list and show news content
   api.onPageChange(() => {
-    const newsTab = document.querySelector('.navigation-bar .news');
+    const newsTab = document.querySelector('.nav-item_news');
     if (newsTab) {
       newsTab.onclick = function(e) {
         e.preventDefault();
