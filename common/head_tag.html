@@ -14,7 +14,9 @@
     const newsContent = document.querySelector('.custom-news-content');
     console.log("Hiding topic list, showing news content");
     topicList.style.display = 'none';
-    newsContent.style.display = 'block';
+    if (newsContent) {
+      newsContent.style.display = 'block';
+    }
   }
 
   // Attach click event to News tab to hide topic list and show news content
