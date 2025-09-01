@@ -1,9 +1,9 @@
 <script type="text/discourse-plugin" version="0.8.42">
-  // Add a new News tab to the navigation bar
+  // Add a new News tab to the navigation bar, linking to /top
   api.addNavigationBarItem({
     name: "news",
     displayName: "News",
-    href: "/news"
+    href: "/top"
   });
-  // To display custom content, use a connector or override a template for the /news route.
+  // The news content will be injected on the /top page using a connector.
 </script>
