@@ -1,9 +1,29 @@
 <script type="text/discourse-plugin" version="0.8.42">
-  // Add a new News tab to the navigation bar and register the route
-  api.addDiscoveryRoute({
+  // Add a new News tab to the navigation bar
+  api.addNavigationBarItem({
     name: "news",
-    path: "/news",
-    title: "News",
-    templateName: "news"
+    displayName: "News",
+    href: "/news"
+  });
+
+  // Show the news template when the News tab is clicked
+  api.modifyClass('controller:discovery/topics', {
+    pluginId: 'news-custom-tab',
+    actions: {
+      showNews() {
+        this.transitionToRoute('discovery.news');
+      }
+    }
+  });
+
+  // Register the route for /news
+  api.modifyClass('router:main', {
+    pluginId: 'news-custom-tab',
+    beforeModel(transition) {
+      if (transition.intent.url === "/news") {
+        this.transitionTo('discovery.news');
+      }
+      this._super(...arguments);
+    }
   });
 </script>
