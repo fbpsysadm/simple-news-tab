@@ -47,6 +47,21 @@
     console.error("[News Tab Theme] Error registering onPageChange:", e);
   }
 
+  // Ensure clicking the News tab sets the hash to #news
+  api.onPageChange(() => {
+    const newsTab = document.querySelector('.navigation-bar .news');
+    if (newsTab) {
+      newsTab.onclick = function(e) {
+        e.preventDefault();
+        if (window.location.pathname === '/top' || window.location.pathname === '/top/') {
+          window.location.hash = '#news';
+        } else {
+          window.location.href = '/top#news';
+        }
+      };
+    }
+  });
+
   // Use MutationObserver to watch for topic list or news content being added
   const observer = new MutationObserver(() => {
     toggleNewsContent();
