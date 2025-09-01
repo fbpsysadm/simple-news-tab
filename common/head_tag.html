@@ -6,12 +6,23 @@
     href: "/top?news=1"
   });
 
+  // Ensure clicking the News tab uses Discourse's router for navigation
+  api.onPageChange(() => {
+    const newsTab = document.querySelector('.navigation-bar .news');
+    if (newsTab) {
+      newsTab.onclick = function(e) {
+        e.preventDefault();
+        const router = require('discourse/models/router').default;
+        router.transitionTo('/top', { queryParams: { news: 1 } });
+      };
+    }
+  });
+
   // Hide topic list and show only news content when News tab is active
   api.onPageChange((url, title) => {
     const isNewsTab = url.startsWith("/top") && window.location.search.includes("news=1");
     const topicList = document.querySelector('.topic-list');
     const newsContent = document.querySelector('.custom-news-content');
-    console.log("isNewsTab:", isNewsTab);
     if (topicList && newsContent) {
       if (isNewsTab) {
         topicList.style.display = 'none';
