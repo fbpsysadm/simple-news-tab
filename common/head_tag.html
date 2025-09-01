@@ -12,6 +12,12 @@
     console.log("[News Tab Theme] toggleNewsContent called");
     const topicList = document.querySelector('.topic-list');
     const listArea = document.querySelector('#list-area');
+
+    const topTab = document.querySelector('.nav-item_top');
+    if (topTab) {
+      topTab.style.display = 'none';
+    }
+
     if (topicList) {
       console.log("Hiding topic list");
       topicList.style.display = 'none';
